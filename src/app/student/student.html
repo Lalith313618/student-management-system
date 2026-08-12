@@ -1,0 +1,314 @@
+<div class="student-page">
+  <div class="form-card">
+    <div class="card-header">
+      <h2>Student Entry Form</h2>
+    </div>
+
+    <div class="card-body">
+      <div class="form-grid">
+        <div class="form-group">
+
+      <label>Student Name(Mandatory)</label>
+        <input 
+          type="text" 
+          placeholder="Enter student name"
+          [(ngModel)]="student.name">
+
+        </div>
+        <div class="form-group">
+          <label>Email(Mandatory)</label>
+          <input 
+             type="email"
+             placeholder="Enter email" 
+             [(ngModel)]="student.email">
+        </div>
+
+
+        <div class="form-group">
+    
+          <label>Mobile Number(Mandatory)</label>
+          <input 
+             type="number"
+             placeholder="Enter mobile number" 
+             [(ngModel)]="student.mobile">
+
+        </div>
+
+
+        <div class="form-group">
+          <label>Gender(Mandatory)</label>
+          <select [(ngModel)]="student.gender">
+
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+
+          </select>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Department(Mandatory)</label>
+          <select [(ngModel)]="student.department">
+
+            <option value="">Select Department</option>
+            <option>Computer Science</option>
+            <option>Information Technology</option>
+            <option>ECE</option>
+            <option>Mechanical</option>
+            <option>Civil</option>
+
+          </select>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Year(Mandatory)</label>
+          <select [(ngModel)]="student.year">
+
+            <option value="">Select Year</option>
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Date of Birth(Optional)</label>
+          <input 
+
+             type="date"
+             [(ngModel)]="student.dob">
+
+          </div>
+
+
+        <div class="form-group">
+
+          <label>Status(Mandatory)</label>
+          <select [(ngModel)]="student.status">
+
+            <option value="">Select Status</option>
+            <option>Active</option>
+            <option>Inactive</option>
+
+          </select>
+
+        </div>
+
+        <div class="form-group address">
+          <label>Address(Optional)</label>
+          <textarea 
+
+               rows="2"
+               placeholder="Enter address"
+               [(ngModel)]="student.address">
+
+          </textarea>
+
+        </div>
+      </div>
+
+
+      <div class="button-group">
+        <button 
+
+           type="button" 
+           class="save-btn" 
+           (click)="saveStudent()">
+           Save
+
+        </button>
+
+
+        <button 
+
+           type="button" 
+           class="update-btn" 
+           (click)="updateStudent()">
+           Update
+
+        </button>
+
+        <button 
+
+          type="button"
+          class="reset-btn"
+          (click)="resetForm()">
+          Reset
+
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="table-card">
+
+    <div class="card-header">
+      <h2>Student List</h2>
+    </div>
+
+
+    <div class="student-search">
+      <div class="search-grid">
+        <div class="search-group">
+          <label>Search Student</label>
+
+          <input 
+
+             type="text" 
+             placeholder="Search by name" 
+             [(ngModel)]="searchName">
+
+        </div>
+
+        <div class="search-group">
+
+          <label>Department</label>
+          <select [(ngModel)]="searchDepartment">
+
+            <option value="">All</option>
+            <option>Computer Science</option>
+            <option>Information Technology</option>
+            <option>ECE</option>
+            <option>Mechanical</option>
+            <option>Civil</option>
+
+          </select>
+
+        </div>
+
+        <div class="search-group">
+
+          <label>Year</label>
+          <select [(ngModel)]="searchYear">
+
+            <option value="">All</option>
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+
+          </select>
+
+        </div>
+
+        <div class="search-group">
+
+          <label>Status</label>
+          <select [(ngModel)]="searchStatus">
+
+            <option value="">All</option>
+            <option>Active</option>
+            <option>Inactive</option>
+
+          </select>
+
+        </div>
+      </div>
+
+
+      <div class="search-buttons">
+        <button 
+
+            type="button" 
+            class="search-btn" 
+            (click)="applySearch()"> 
+            Search
+
+        </button>
+
+        <button 
+
+            type="button"
+            class="clear-btn" 
+            (click)="clearSearch()">
+            Clear
+
+        </button>
+
+      </div>
+    </div>
+
+    <div class="table-container">
+
+      <table class="student-table">
+        <colgroup>
+
+          <col class="col-id">
+          <col class="col-name">
+          <col class="col-email">
+          <col class="col-mobile">
+          <col class="col-department">
+          <col class="col-year">
+          <col class="col-status">
+          <col class="col-actions">
+
+        </colgroup>
+
+        <thead>
+          <tr>
+
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile No</th>
+            <th>Department</th>
+            <th>Year</th>
+            <th>Status</th>
+            <th>Actions</th>
+
+          </tr>
+
+        </thead>
+        
+        <tbody>
+
+          <tr *ngFor="let student of filteredStudents">
+
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.mobile }}</td>
+            <td>{{ student.department }}</td>
+            <td>{{ student.year }}</td>
+            <td>{{ student.status }}</td>
+
+            <td class="action-cell">
+              <div class="action-buttons">
+
+                <button 
+
+                   type="button" 
+                   class="edit-btn" 
+                   (click)="editStudent(student)">
+                   Edit
+
+                </button>
+
+                <button 
+
+                   type="button"
+                   class="del-btn" 
+                   (click)="deleteStudent(student.id)">
+                   Delete
+
+                </button>
+              </div>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

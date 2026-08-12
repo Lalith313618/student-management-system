@@ -1,0 +1,91 @@
+<div class="dashboard">
+    <h2 class="page-title">Dashboard</h2>
+    <div class="card-container">
+        <div class="card blue">
+
+            <h3>Total Students</h3>
+            <h1>{{ totalStudents }}</h1>
+            <p>All Registered Students</p>
+        </div>
+        <div class="card green">
+            <h3>Active Students</h3>
+            <h1>{{ activeStudents }}</h1>
+            <p>Currently Active</p>
+        </div>
+        <div class="card orange">
+            <h3>Inactive Students</h3>
+            <h1>{{ inactiveStudents }}</h1>
+            <p>Currently Inactive</p>
+        </div>
+
+        <div class="card purple">
+            <h3>New Students</h3>
+            <h1>{{ newStudentsThisMonth }}</h1>
+            <p>Joined This Month</p>
+        </div>
+    </div>
+
+    <div class="filter-card">
+        <h3>Filters</h3>
+        <div class="filter-row">
+
+            <select
+                [(ngModel)]="selectedDepartment">
+                <option value="">All Departments</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="IT">Information Techonology</option>
+                <option value="Cvil">Cvil</option>
+                <option value="ECE">ECE</option>
+                <option value="Mechanical">Mechanical</option>
+            </select>
+
+            <select [(ngModel)]="selectedYear">
+
+                <option value="">All Years</option>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+
+            </select>
+            <select [(ngModel)]="selectedStatus">
+
+                <option value="">All Status</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">  Inactive</option>
+
+            </select>
+            <button (click)="applyFilter()">Apply Filter</button>
+        </div>
+    </div>
+    <div class="table-card">
+        <h3>Recent Students</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Year</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of recentStudents"><td>{{ student.name }}</td>
+                    <td>{{ student.department }}</td>
+                    <td>{{ student.year }}</td>
+                    <td>{{ student.status }}</td>
+                </tr>
+
+                <tr *ngIf="recentStudents.length === 0">
+                    <td
+                        colspan="4"
+                        style="text-align: center;">
+                        No students found
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
